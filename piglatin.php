@@ -10,7 +10,7 @@
 
 class PigLatin {
 
-	public function word2pig( $match ) {
+	public static function word2pig( $match ) {
 		$text       = $match[0];
 		$hyphen     = '';
 		$consonants = "bBcCdDfFgGhHjJkKlLmMnNpPqQrRsStTvVwWxXyYzZ";
@@ -32,7 +32,7 @@ class PigLatin {
 		}
 	}
 
-	public function translation2pig( $string ) {
+	public static function translation2pig( $string ) {
 		if ( strlen( $string ) < 3 ) {
 			return $string;
 		}
@@ -66,11 +66,11 @@ class PigLatin {
 		return implode( '', $parts );
 	}
 
-	public function gettext( $translated, $original ) {
+	public static function gettext( $translated, $original ) {
 		return PigLatin::translation2pig( $original );
 	}
 
-	public function ngettext( $translated, $single, $plural, $number ) {
+	public static function ngettext( $translated, $single, $plural, $number ) {
 		return PigLatin::translation2pig($number == 1? $single : $plural);
 	}
 
