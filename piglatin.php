@@ -74,9 +74,61 @@ class PigLatin {
 		return PigLatin::translation2pig($number == 1? $single : $plural);
 	}
 
+	/**
+	 * Adds button to admin bar.
+	 *
+	 * @global object $wp_admin_bar Most likely instance of WP_Admin_Bar but this is filterable.
+	 *
+	 * @return null Retuns early if not site admin, or admin bar should not be showing.
+	 *
+	 * @since 0.2
+	 */
+	public function admin_bar_piglatin_switcher() {
+		global $wp_admin_bar;
+		$_user_id = get_current_user_id();
+
+		if ( ! is_super_admin() || ! is_admin_bar_showing() )
+			return;
+
+		// Get opposite direction for button text
+		$piglatin = get_user_meta( $_user_id, 'piglatinadminbar', true );
+		$piglatin = 'true' == $piglatin ? 'false' : 'true';
+		$title = 'true' == $piglatin ? 'Activate Pig Latin' : 'Deactivate Pig Latin';
+
+		$wp_admin_bar->add_menu(
+			array(
+				'id'    => 'PigLatin',
+		 		'title' => $title,
+		 		'href'  => add_query_arg( array( 'piglatin' => $piglatin ) )
+			)
+		);
+	}
+
+	/**
+	 * Save the currently chosen state on a per-user basis.
+	 *
+	 * @since 0.2
+	 */
+	public function set_piglatin() {
+
+		$_user_id = get_current_user_id();
+		$piglatin = isset( $_GET['piglatin'] ) ? $_GET['piglatin'] : get_user_meta( $_user_id, 'piglatinadminbar', true );
+
+		if ( isset( $_GET['piglatin'] ) ) {
+			$piglatin = $_GET['piglatin'] == 'true' ? 'true' : 'false';
+			update_user_meta( $_user_id, 'piglatinadminbar', $piglatin );
+		}
+
+		if ( 'true' == $piglatin ) {
+			add_filter( 'gettext', array( 'PigLatin', 'gettext' ), 10, 2 );
+			add_filter( 'gettext_with_context', array( 'PigLatin', 'gettext' ), 10, 2 );
+			add_filter( 'ngettext', array( 'PigLatin', 'ngettext' ), 10, 4 );
+			add_filter( 'ngettext_with_context', array( 'PigLatin', 'ngettext' ), 10, 4 );
+		}
+
+	}
+
 }
 
-add_filter( 'gettext', array( 'PigLatin', 'gettext' ), 10, 2 );
-add_filter( 'gettext_with_context', array( 'PigLatin', 'gettext' ), 10, 2 );
-add_filter( 'ngettext', array( 'PigLatin', 'ngettext' ), 10, 4 );
-add_filter( 'ngettext_with_context', array( 'PigLatin', 'ngettext' ), 10, 4 );
+add_action( 'init', array( 'PigLatin', 'set_piglatin' ) );
+add_action( 'admin_bar_menu', array( 'PigLatin', 'admin_bar_piglatin_switcher' ), 999 );
