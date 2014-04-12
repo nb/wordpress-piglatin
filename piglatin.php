@@ -66,17 +66,63 @@ class PigLatin {
 		return implode( '', $parts );
 	}
 
-	public static function gettext( $translated, $original ) {
+	public static function check_domain( $domain ) {
+		$domains = array();
+		if ( ! empty( $GLOBALS['piglatin_domains'] ) ) {
+			$domains = $GLOBALS['piglatin_domains'];
+		}
+
+		$domains = apply_filters( 'piglatin_domains', $domains );
+
+		// If we have no domains, allow all!
+		if ( empty( $domains ) ) {
+			return true;
+		}
+
+		// If we're told to use the domain, do it
+		if ( isset( $domains[ $domain ] ) ) {
+			return $domains[ $domain ];
+		}
+
+		// Skip all by default
+		return false;
+	}
+
+	public static function gettext( $translated, $original, $domain) {
+		if ( ! PigLatin::check_domain( $domain ) ) {
+			return $translated;
+		}
+
 		return PigLatin::translation2pig( $original );
 	}
 
-	public static function ngettext( $translated, $single, $plural, $number ) {
-		return PigLatin::translation2pig($number == 1? $single : $plural);
+	public static function gettext_with_context( $translated, $original, $context, $domain ) {
+		if ( ! PigLatin::check_domain( $domain ) ) {
+			return $translated;
+		}
+
+		return PigLatin::translation2pig( $original );
+	}
+
+	public static function ngettext( $translated, $single, $plural, $number, $domain ) {
+		if ( ! PigLatin::check_domain( $domain ) ) {
+			return $translated;
+		}
+
+		return PigLatin::translation2pig( $number == 1 ? $single : $plural );
+	}
+
+	public static function ngettext_with_context( $translation, $single, $plural, $number, $context, $domain ) {
+		if ( ! PigLatin::check_domain( $domain ) ) {
+			return $translated;
+		}
+
+		return PigLatin::translation2pig( $number == 1 ? $single : $plural );
 	}
 
 }
 
-add_filter( 'gettext', array( 'PigLatin', 'gettext' ), 10, 2 );
-add_filter( 'gettext_with_context', array( 'PigLatin', 'gettext' ), 10, 2 );
-add_filter( 'ngettext', array( 'PigLatin', 'ngettext' ), 10, 4 );
-add_filter( 'ngettext_with_context', array( 'PigLatin', 'ngettext' ), 10, 4 );
+add_filter( 'gettext', array( 'PigLatin', 'gettext' ), 10, 3 );
+add_filter( 'gettext_with_context', array( 'PigLatin', 'gettext_with_context' ), 10, 4 );
+add_filter( 'ngettext', array( 'PigLatin', 'ngettext' ), 10, 5 );
+add_filter( 'ngettext_with_context', array( 'PigLatin', 'ngettext' ), 10, 6 );
