@@ -109,7 +109,7 @@ class PigLatin {
 			return $translated;
 		}
 
-		return PigLatin::translation2pig($number == 1? $single : $plural);
+		return PigLatin::translation2pig( $number == 1 ? $single : $plural );
 	}
 
 	public static function ngettext_with_context( $translation, $single, $plural, $number, $context, $domain ) {
@@ -117,7 +117,7 @@ class PigLatin {
 			return $translated;
 		}
 
-		return PigLatin::translation2pig($number == 1? $single : $plural);
+		return PigLatin::translation2pig( $number == 1 ? $single : $plural );
 	}
 
 }
