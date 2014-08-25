@@ -6,6 +6,7 @@
  * Version: 0.1
  * Author: Nikolay Bachiyski
  * Author URI: http://nikolay.bg/
+ * Text Domain: piglatin
  */
 
 class PigLatin {
