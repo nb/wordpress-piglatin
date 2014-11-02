@@ -3,7 +3,7 @@ Contributors: nbachiyski
 Tags: piglatin, i18n, translation, translations, plugin, theme, plugins, themes
 Requires at least: 2.7
 Tested up to: 4.0
-Stable tag: 0.1
+Stable tag: trunk
 
 Overrides the current language and translates all messages into Pig Latin.
 
