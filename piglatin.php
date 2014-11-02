@@ -3,7 +3,7 @@
  * Plugin Name: Pig Latin
  * Plugin URI: http://wordpress.org/plugins/piglatin/
  * Description: Overrides the current language and translates all messages into pig latin. This way you can easily spot, which messages were left untranslatable, while the interface is still usable.
- * Version: 0.1
+ * Version: 0.2
  * Author: Nikolay Bachiyski
  * Author URI: http://nikolay.bg/
  */

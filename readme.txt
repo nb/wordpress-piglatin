@@ -16,6 +16,12 @@ Text in Pig Latin is both noticeably different than English and readable. This w
 
 == Changelog ==
 
+= 0.2 =
+* Moved development to github: https://github.com/nb/wordpress-piglatin
+* Avoid strict errors by explicitly marking methods as static, thanks to Andrey “Rarst” Savchenko
+* Code conforms to coding standards, thanks to Ulrich Pogson
+
+
 = 0.1 =
 * Initial release
 
