@@ -21,11 +21,11 @@ class PigLatin {
 		if ( false !== strpos( $consonants, $text[0] ) ) {
 			$cons = $text[0];
 			$i = 1;
-			while ( $i < strlen($text) && false !== strpos( $consonants, $text[$i] ) ) {
+			while ( $i < strlen( $text ) && false !== strpos( $consonants, $text[$i] ) ) {
 				$cons .= $text[$i];
 				++$i;
 			}
-			return substr($text, $i).$hyphen.$cons.'ay';
+			return substr( $text, $i ).$hyphen.$cons.'ay';
 		} else if ( false !== strpos( $vowels, $text[0] ) ) {
 			return $text.'ay';
 		} else {
@@ -59,7 +59,7 @@ class PigLatin {
 					break;
 				}
 			}
-			if ($isdelim) {
+			if ( $isdelim ) {
 				continue;
 			}
 			$parts[$i] = preg_replace_callback( '/[a-z]+/i', array( 'PigLatin', 'word2pig' ), $parts[$i] );
@@ -72,7 +72,7 @@ class PigLatin {
 	}
 
 	public static function ngettext( $translated, $single, $plural, $number ) {
-		return PigLatin::translation2pig($number == 1? $single : $plural);
+		return PigLatin::translation2pig( $number == 1? $single : $plural );
 	}
 
 }
