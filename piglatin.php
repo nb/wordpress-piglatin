@@ -21,13 +21,13 @@ class PigLatin {
 			$cons = $text[0];
 			$i = 1;
 			$text_length = strlen( $text );
-			while ( $i < $text_length && false !== strpos( $consonants, $text[$i] ) ) {
-				$cons .= $text[$i];
+			while ( $i < $text_length && false !== strpos( $consonants, $text[ $i ] ) ) {
+				$cons .= $text[ $i ];
 				++$i;
 			}
-			return substr( $text, $i ).$hyphen.$cons.'ay';
+			return substr( $text, $i ) . $hyphen . $cons . 'ay';
 		} else if ( false !== strpos( $vowels, $text[0] ) ) {
-			return $text.'ay';
+			return $text . 'ay';
 		} else {
 			return $text;
 		}
@@ -49,12 +49,12 @@ class PigLatin {
 			'%[sd]',
 			'\s+',
 		);
-		$parts = preg_split( '/('.implode('|', $delimiters).')/i', $string, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY );
+		$parts = preg_split( '/(' . implode( '|', $delimiters ) . ')/i', $string, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY );
 		$cnt = count( $parts );
 		for ( $i = 0; $i < $cnt; ++$i ) {
 			$isdelim = false;
 			foreach ( $delimiters as $delim ) {
-				if ( preg_match( "/^$delim$/", $parts[$i] ) ) {
+				if ( preg_match( "/^$delim$/", $parts[ $i ] ) ) {
 					$isdelim = true;
 					break;
 				}
@@ -62,7 +62,7 @@ class PigLatin {
 			if ( $isdelim ) {
 				continue;
 			}
-			$parts[$i] = preg_replace_callback( '/[a-z]+/i', array( 'PigLatin', 'word2pig' ), $parts[$i] );
+			$parts[ $i ] = preg_replace_callback( '/[a-z]+/i', array( 'PigLatin', 'word2pig' ), $parts[ $i ] );
 		}
 		return implode( '', $parts );
 	}
@@ -72,7 +72,7 @@ class PigLatin {
 	}
 
 	public static function ngettext( $translated, $single, $plural, $number ) {
-		return PigLatin::translation2pig( $number == 1? $single : $plural );
+		return PigLatin::translation2pig( $number == 1 ? $single : $plural );
 	}
 
 }
