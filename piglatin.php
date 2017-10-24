@@ -73,7 +73,7 @@ class PigLatin {
 	}
 
 	public static function ngettext( $translated, $single, $plural, $number ) {
-		return PigLatin::translation2pig( $number === 1 ? $single : $plural );
+		return PigLatin::translation2pig( 1 === $number ? $single : $plural );
 	}
 
 }
