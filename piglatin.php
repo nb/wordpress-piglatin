@@ -26,7 +26,7 @@ class PigLatin {
 				++$i;
 			}
 			return substr( $text, $i ) . $hyphen . $cons . 'ay';
-		} else if ( false !== strpos( $vowels, $text[0] ) ) {
+		} elseif ( false !== strpos( $vowels, $text[0] ) ) {
 			return $text . 'ay';
 		} else {
 			return $text;
