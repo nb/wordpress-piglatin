@@ -37,8 +37,9 @@ class PigLatin {
 		if ( strlen( $string ) < 3 ) {
 			return $string;
 		}
+
 		/*
-			do not translate tag names and attributes,
+			Do not translate tag names and attributes,
 			entities, and %xxx encoded strings
 		*/
 		$delimiters = array(
