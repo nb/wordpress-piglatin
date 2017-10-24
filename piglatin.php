@@ -20,7 +20,8 @@ class PigLatin {
 		if ( false !== strpos( $consonants, $text[0] ) ) {
 			$cons = $text[0];
 			$i = 1;
-			while ( $i < strlen( $text ) && false !== strpos( $consonants, $text[$i] ) ) {
+			$text_length = strlen( $text );
+			while ( $i < $text_length && false !== strpos( $consonants, $text[$i] ) ) {
 				$cons .= $text[$i];
 				++$i;
 			}
