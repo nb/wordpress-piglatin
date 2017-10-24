@@ -13,8 +13,8 @@ class PigLatin {
 	public static function word2pig( $match ) {
 		$text       = $match[0];
 		$hyphen     = '';
-		$consonants = "bBcCdDfFgGhHjJkKlLmMnNpPqQrRsStTvVwWxXyYzZ";
-		$vowels     = "aAeEiIoOuU";
+		$consonants = 'bBcCdDfFgGhHjJkKlLmMnNpPqQrRsStTvVwWxXyYzZ';
+		$vowels     = 'aAeEiIoOuU';
 
 		$i = 0;
 		if ( false !== strpos( $consonants, $text[0] ) ) {
