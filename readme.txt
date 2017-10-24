@@ -29,11 +29,3 @@ Text in Pig Latin is both noticeably different than English and readable. This w
 
 = 0.1 =
 * Initial release
-
-== Installation ==
-
-This section describes how to install the plugin and get it working.
-
-1. Unzip `piglatin-x.x.zip`
-1. Upload the `piglatin` directory (not its contents, the whole directory) to `/wp-content/plugins/`
-1. Activate the plugin through the `Plugins` menu in WordPress
