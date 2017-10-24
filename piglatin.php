@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Plugin Name: Pig Latin
  * Plugin URI: http://wordpress.org/plugins/piglatin/
  * Description: Overrides the current language and translates all messages into pig latin. This way you can easily spot, which messages were left untranslatable, while the interface is still usable.
@@ -8,7 +8,6 @@
  * Author URI: http://nikolay.bg/
  * Text Domain: piglatin
  */
-
 class PigLatin {
 
 	public static function word2pig( $match ) {
